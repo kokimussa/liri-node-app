@@ -6,7 +6,8 @@ var fs = require("fs");
 // Import the NPM packages
 var Twitter = require("twitter");
 
-var Spotify = require("node-spotify-api");
+var spotify = require("./keys");
+// console.log(spotify);
 
 var request = require("request");
 
@@ -35,13 +36,15 @@ var getMeSpotify = function(songName) {
     songName = "I Want it That Way";
   }
 
- spotify.search({
+ keys.spotify.search({
       type: "track", query: songName}, function(err, data) {
       if (err) {
         return console.log("Error occurred: " + err);
       }
 
-      var songs = data.tracks.items[0];
+      // console.log(data);
+
+      var songs = data.tracks.items;
 
       for (var i = 0; i < songs.length; i++) {
         console.log(i);
